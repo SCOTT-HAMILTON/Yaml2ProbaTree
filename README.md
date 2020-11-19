@@ -1,112 +1,72 @@
-# merge-keepass
+# Yaml2ProbaTree
 
-Keepass Databases 1.x/2.x Merging module and command line utility
-
-![Travis CI build status](https://travis-ci.org/SCOTT-HAMILTON/merge-keepass.svg?branch=master)
-
-# Building
-
-This project is configured for setuptools
-
-# What does it do ?
-This updates/adds new groups, new entries and new fields.
-Unfortunatly, due to a bug in pykeepass, it cannot merge attachments.
-
-# Usage :
-## Command Line Utility
-```
-Usage: merge_keepass [OPTIONS] [INPUT_DATABASES]... OUTPUT_DATABASE
-
-Options:
-  -p, --password TEXT
-  -d, --debug
-  -c, --continue-on-error
-  --help                   Show this message and exit.
+Converts a yaml data such as : 
+*(see test/input_tree.yaml)*
+```yaml
+root:
+  $A_1$:
+    _v: 85/100
+    $A_2$:
+      _v: 85/100
+    $\bar{A_2}$:
+      _v: 15/100
+  $\bar{A_1}$:
+    _v: 15/100
+    $A_2$:
+      _v: 1/10
+    $\bar{A_2}$:
+      _v: 9/10
 ```
 
-## keepassmerge module
-If you want to directly use this in your python code,
-you can use the python module keepassmerge as so :
+Into a legit tikz tree : 
+*(needs the tikz tree library, please add \usetikzlibrary{trees} to your preambule)*
+```latex
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+% Define styles for mytree and leafs
+\tikzstyle{mytree} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
 
+\begin{tikzpicture}[grow=right, sloped]
+\node[mytree] {}
+        child {
+                node[mytree] {$\bar{A_1}$}
+                child {
+                        node[end, label=right:
+                                {$\bar{A_2}$}] {}
 
- > merging multiple databases
-```python
-from MergeKeepass.keepassmerge import *
-from getpass import getpass
+                        edge from parent
+                        node[above]  {$\frac{9}{10}$}
+                }
+                child {
+                        node[end, label=right:
+                                {$A_2$}] {}
 
-input_databases = [
-	'../db1.kdbx',
-	'db2.kdbx',
-	'local/mydb.kdbx',
-]
+                        edge from parent
+                        node[above]  {$\frac{1}{10}$}
+                }
+                edge from parent
+                node[above]  {$\frac{15}{100}$}
+        }
+        child {
+                node[mytree] {$A_1$}
+                child {
+                        node[end, label=right:
+                                {$\bar{A_2}$}] {}
 
-output_database = 'out.kdbx'
+                        edge from parent
+                        node[above]  {$\frac{15}{100}$}
+                }
+                child {
+                        node[end, label=right:
+                                {$A_2$}] {}
 
-password = getpass()
-
-got_errors = merge_databases(input_databases,
-			     output_database,
-			     password,
-			     debug=False,
-			     continue_on_error=False)
-
-if got_errors:
-	pass
-	# Errors occurred
-else:
-	pass
-	# No erros, merging succeeded
-
+                        edge from parent
+                        node[above]  {$\frac{85}{100}$}
+                }
+                edge from parent
+                node[above]  {$\frac{85}{100}$}
+        };
+\end{tikzpicture}
 ```
- > merging two databases
-```python
-from MergeKeepass.keepassmerge import *
-from getpass import getpass
-
-database1  = '../db1.kdbx'
-
-database2 = 'local/mydb.kdbx'
-
-output_database = 'out.kdbx'
-
-password = getpass()
-
-try:
-	merge_two_databases(database1,
-			    database2,
-			    output_database,
-			    password,
-			    debug=False)
-except  DB1WrongPasswordError:
-	pass
-	# Password of database1 is wrong
-except  DB2WrongPasswordError:
-	pass
-	# Password of database2 is wrong
-```
-
-### Requirements
- - [pykeepass](https://github.com/libkeepass/pykeepass)
- - [click](https://github.com/pallets/click)
-
-### Help
-
-This is just a little project, but feel free to fork, change, extend or correct the code.
-
-### TODO :
- - refactoring, nothing much more.
-
-License
-----
-merge-keepass is delivered as it is under the well known MIT License
-
-**References that helped**
- - [pykeepass repos] : <https://github.com/libkeepass/pykeepass>
- - [click documentation] : <https://click.palletsprojects.com/en/7.x/#documentation>
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-
-
-   [pykeepass repos]: <https://github.com/libkeepass/pykeepass>
-   [click documentation]: <https://click.palletsprojects.com/en/7.x/#documentation>
