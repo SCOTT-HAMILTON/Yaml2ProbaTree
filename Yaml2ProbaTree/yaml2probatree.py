@@ -1,5 +1,6 @@
 from yaml import load, Loader
 import re
+import sys
 
 def indent(text):
     text = "\t"+text
@@ -34,9 +35,13 @@ def recurse_node(node, name, n=0):
         text = """\\node[mytree] {}\n\t""" + indent(text).strip()+ """;\n"""
     return text
 
-def yaml2tikz(input_yaml_file):
-    with open(input_yaml_file, "r") as input_tree:
-        data = load(input_tree, Loader=Loader)
+def yaml2tikz(input_yaml_file=None):
+    if input_yaml_file == None:
+        text = ''.join([ line for line in sys.stdin])
+        data = load(text, Loader=Loader)
+    else:
+        with open(input_yaml_file, "r") as input_tree:
+            data = load(input_tree, Loader=Loader)
     if not "root" in data.keys():
         print("[error] No root node, exiting...")
         exit(1)

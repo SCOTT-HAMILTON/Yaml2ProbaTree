@@ -84,3 +84,4 @@ Yaml2ProbaTree is delivered as it is under the well known MIT License
 
 
    [probability tree example]: <https://texample.net/tikz/examples/probability-tree>
+
