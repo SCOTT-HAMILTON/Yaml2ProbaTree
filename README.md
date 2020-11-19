@@ -70,3 +70,17 @@ Into a legit tikz tree :
         };
 \end{tikzpicture}
 ```
+
+License
+----
+Yaml2ProbaTree is delivered as it is under the well known MIT License
+
+
+**References that helped**
+ - [probability tree example] : <https://texample.net/tikz/examples/probability-tree>
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+
+
+   [probability tree example]: <https://texample.net/tikz/examples/probability-tree>
