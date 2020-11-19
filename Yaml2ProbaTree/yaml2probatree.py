@@ -33,7 +33,8 @@ class Yaml2ProbaTree:
         text += '\n'.join(list(map(lambda t: """child {\n"""+self.indent(t)+"""\n}""", reversed(texts))))+'\n'
 
         if n > 0:
-            text += """edge from parent\n"""
+            text = text.strip()
+            text += """\nedge from parent\n"""
             text += """node[above]  {"""+weight+"""}"""
         if name == "Root":
             text = """\\node[mytree] {}\n\t""" + self.indent(text).strip()+ """;\n"""
