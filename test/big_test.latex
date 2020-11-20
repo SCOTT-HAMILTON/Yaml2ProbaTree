@@ -1,0 +1,81 @@
+\documentclass[a4paper]{article}
+
+\usepackage{mathtools} %% For math
+\usepackage{esvect} %% For vectors
+\usepackage{mathrsfs} %% For mathscr
+\usepackage{amssymb} %% For mathbb
+\usepackage[a4paper]{geometry} %% For dimensions manipulations
+
+\usepackage{tikz,tkz-tab} %% For tikz and for variations table
+\usetikzlibrary{trees} %% For probabolity trees
+\usepackage{adjustbox} %% To fit tikzpictures nicely
+\usepackage{pgfplots} %% For the axis environment
+\usepackage{tkz-euclide} %% For intersections calculations
+\pgfplotsset{compat=1.11} %% For axis compatibility with other tikz commands
+
+\setlength{\headsep}{5pt} %% Don't need 25pt of headsep !
+
+\newcommand{\vc}[3]{
+\vv{#1}
+\begin{pmatrix}
+	#2\\
+	#3
+\end{pmatrix}
+}
+
+\title{Devoir maison de mathématiques - 3}
+\author{Scott Hamilton}
+\date{} %% Never tell how late you are with your homeworks
+
+\sloppy
+
+\begin{document}
+
+\maketitle
+
+\addtolength{\hoffset}{-5mm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\textheight}{2cm}
+
+\section{Exercice I}
+
+\paragraph{123 page 61}
+
+\subsection{}
+
+%% Tree Start
+root:
+	$A_n+1$:
+		_v: $P_n$
+		$A_{n+1}$:
+			_v: 85/100
+		$\overline{A_{n+1}}$:
+			_v: 15/100
+	$\overline{A_n}$:
+		_v: $1-P_n$
+		$A_{n+1}$:
+			_v: 1/10
+		$\overline{A_{n+1}}$:
+			_v: 9/10
+%% Tree End
+\subsection{lol MDR}
+
+lol
+%% Tree Start
+root:
+	$A$:
+		_v: $P_n$
+		$A_{n+2}$:
+			_v: 85/100
+		$\overline{A_{n+1}}$:
+			_v: 15/100
+	$\overline{A_n}$:
+		_v: $1-P_n$
+		$A_{n+1}$:
+			_v: 1/10
+		$\overline{A_{n+1}}$:
+			_v: 9/10
+%% Tree End
+lol XD
+
+\end{document}

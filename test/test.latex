@@ -1,0 +1,38 @@
+\subsection{}
+
+%% Tree Start
+root:
+	$A_n+1$:
+		_v: $P_n$
+		$A_{n+1}$:
+			_v: 85/100
+		$\overline{A_{n+1}}$:
+			_v: 15/100
+	$\overline{A_n}$:
+		_v: $1-P_n$
+		$A_{n+1}$:
+			_v: 1/10
+		$\overline{A_{n+1}}$:
+			_v: 9/10
+%% Tree End
+\subsection{lol MDR}
+
+lol
+%% Tree Start
+root:
+	$A$:
+		_v: $P_n$
+		$A_{n+2}$:
+			_v: 85/100
+		$\overline{A_{n+1}}$:
+			_v: 15/100
+	$\overline{A_n}$:
+		_v: $1-P_n$
+		$A_{n+1}$:
+			_v: 1/10
+		$\overline{A_{n+1}}$:
+			_v: 9/10
+%% Tree End
+lol XD
+
+\end{document}
