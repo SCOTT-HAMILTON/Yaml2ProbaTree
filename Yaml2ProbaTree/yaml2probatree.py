@@ -15,6 +15,9 @@ class Yaml2ProbaTree:
         return p.sub(r'$\\frac{\1}{\2}$', weight)
 
     def recurse_node(self, node, name, n=0):
+        if not node:
+            print(f"[log] node `{name}` is corrupted")
+            return
         if not "_v" in node.keys():
             weight = None
         else:
@@ -43,11 +46,15 @@ class Yaml2ProbaTree:
     def yaml2tikz(self, input_yaml_file=None):
         if input_yaml_file == None:
             text = ''.join([ line for line in sys.stdin])
+            # Yaml doesn't work with tabs
+            text = text.replace('\t', '  ')
             if self.debug:
                 print(f"[log] stdin : `{text}`")
             data = load(text, Loader=Loader)
         else:
             with open(input_yaml_file, "r") as input_tree:
+                # Yaml doesn't work with tabs
+                input_tree = input_tree.replace('\t', '  ')
                 data = load(input_tree, Loader=Loader)
         if not "root" in data.keys():
             print("[error] No root node, exiting...")
