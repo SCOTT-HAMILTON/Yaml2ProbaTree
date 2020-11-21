@@ -29,7 +29,7 @@ root:
 	$\overline{A_n}$:
 		_v: $1-P_n$
 		$A_{n+1}$:
-			_v: 1/10
+			_v: 1
 		$\overline{A_{n+1}}$:
 			_v: 9/10
 %% Tree End

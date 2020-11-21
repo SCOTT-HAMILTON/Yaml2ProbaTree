@@ -13,8 +13,10 @@ class Yaml2ProbaTree:
         return text.replace("\n", "\n\t")
 
     def parse_weight(self, weight):
+        if not weight is str:
+            weight = str(weight)
         p = re.compile('([0-9]*)\/([0-9]*)')
-        return p.sub(r'$\\frac{\1}{\2}$', weight)
+        return  p.sub(r'$\\frac{\1}{\2}$', weight)
 
     def recurse_node(self, node, name, n=0):
         if not node:
@@ -60,9 +62,9 @@ class Yaml2ProbaTree:
         elif input_yaml_file:
             with open(input_yaml_file, "r") as input_tree:
                 # Yaml doesn't work with tabs
-                input_tree = ''.join(input_tree.readline()).replace('\t', '  ')
+                input_tree = ''.join(input_tree.readlines()).replace('\t', '  ')
                 if self.debug:
-                    print(f"[log] yaml : `{text}`")
+                    print(f"[log] yaml : `{input_tree}`")
                 data = load(input_tree, Loader=Loader)
         if not "root" in data.keys():
             print("[error] No root node, exiting...")
